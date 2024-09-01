@@ -1,0 +1,28 @@
+<h1>Lista de publicaciones</h1>
+<ul>
+    {% for publicacion in publicaciones %}
+        <li>
+            <h2>{{ publicacion.titulo }}</h2>
+            <p>{{ publicacion.contenido }}</p>
+            <p>Fecha de publicación: {{ publicacion.fecha_publicacion }}</p>
+            <p>Categoría: {{ publicacion.categoria }}</p>
+            <p>Autor: {{ publicacion.autor }}</p>
+        </li>
+    {% endfor %}
+</ul>
+
+
+<form action="" method="get">
+    <input type="text" name="q" placeholder="Buscar...">
+    <button type="submit">Buscar</button>
+</form>
+
+<form action="" method="get">
+    <select name="categoria">
+        <option value="">Todas las categorías</option>
+        {% for categoria in publicaciones.values_list('categoria', flat=True).distinct %}
+            <option value="{{ categoria }}">{{ categoria }}</option>
+        {% endfor %}
+    </select>
+    <button type="submit">Filtrar</button>
+</form>
